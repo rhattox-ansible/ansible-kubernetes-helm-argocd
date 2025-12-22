@@ -20,3 +20,4 @@ Installs and manages ArgoCD on your Kubernetes cluster using the official Helm c
 ## Usage
 
 Add this collection to your Ansible playbook and use the provided roles to automate ArgoCD installation and management.
+```ansible-galaxy collection install kubernetes.core```
