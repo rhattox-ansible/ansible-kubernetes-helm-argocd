@@ -1,0 +1,12 @@
+galaxy_info:
+  role_name: ansible_kubernetes_helm_argocd
+  description: Install Argo CD with Helm and Argo Rollouts with Kubernetes manifests.
+  min_ansible_version: "2.10"
+  galaxy_tags:
+    - kubernetes
+    - helm
+    - argocd
+    - argo
+    - gitops
+
+dependencies: []

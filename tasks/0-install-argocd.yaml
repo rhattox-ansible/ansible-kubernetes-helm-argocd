@@ -1,0 +1,19 @@
+- name: Add Argo CD Helm chart repository
+  kubernetes.core.helm_repository:
+    name: argo
+    repo_url: "{{ argocd_chart_repo }}"
+
+- name: Create Argo CD namespace in Kubernetes
+  kubernetes.core.k8s:
+    api_version: v1
+    kind: Namespace
+    name: "{{ argocd_namespace }}"
+
+- name: Install or upgrade Argo CD using Helm chart
+  kubernetes.core.helm:
+    name: argocd
+    chart_ref: argo/argo-cd
+    release_namespace: "{{ argocd_namespace }}"
+    values_files:
+      - "{{ role_path | default(playbook_dir) }}/templates/argocd-values.yaml"
+    state: present

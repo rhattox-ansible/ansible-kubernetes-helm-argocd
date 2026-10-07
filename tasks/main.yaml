@@ -1,0 +1,19 @@
+- name: Report start of Argo CD and Argo Rollouts installation
+  ansible.builtin.debug:
+    msg:
+      - "=================================================="
+      - "Argo CD and Argo Rollouts installation..."
+      - "=================================================="
+
+- name: Install Argo CD
+  ansible.builtin.include_tasks: 0-install-argocd.yaml
+
+- name: Install Argo Rollouts
+  ansible.builtin.include_tasks: 1-install-argo-rollouts.yaml
+
+- name: Report successful completion of Argo CD and Argo Rollouts installation
+  ansible.builtin.debug:
+    msg:
+      - "=================================================="
+      - "Argo CD and Argo Rollouts installation completed successfully."
+      - "=================================================="

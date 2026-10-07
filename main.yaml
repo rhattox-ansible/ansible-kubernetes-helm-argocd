@@ -1,7 +1,9 @@
-- name: Argocd K8s Installation
+- name: Argo CD and Argo Rollouts K8s Installation
   hosts: localhost
   become: true
   gather_facts: true
-  roles:
-    - chart
-    - cli
+  vars_files:
+    - defaults/main.yaml
+  tasks:
+    - name: Install Argo CD Helm chart and Argo Rollouts manifests
+      ansible.builtin.include_tasks: "tasks/main.yaml"

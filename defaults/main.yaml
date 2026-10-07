@@ -1,0 +1,3 @@
+argocd_chart_repo: https://argoproj.github.io/argo-helm
+argocd_namespace: argocd
+argo_rollouts_namespace: argo-rollouts

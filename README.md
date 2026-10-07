@@ -1,24 +1,29 @@
 # ansible-k8s-argocd
 
-Ansible collection for managing ArgoCD on Kubernetes clusters.
+Installs Argo CD using its Helm chart and Argo Rollouts using the official
+Kubernetes installation manifests. This playbook does not install the Argo CD CLI.
 
-## Roles
+## Layout
 
-### cli
-Installs the ArgoCD CLI tool on the target host. Tasks include:
-- Downloading the ArgoCD CLI binary from official GitHub releases
-- Installing the binary to the specified path
-- Checking the installation
-- Displaying the installed ArgoCD CLI version
+```text
+main.yaml
+defaults/main.yaml
+meta/main.yml
+tasks/main.yaml
+tasks/0-install-argocd.yaml
+tasks/1-install-argo-rollouts.yaml
+templates/argocd-values.yaml
+```
 
-### chart
-Installs and manages ArgoCD on your Kubernetes cluster using the official Helm chart. Tasks include:
-- Adding the ArgoCD Helm chart repository
-- Creating the ArgoCD namespace in Kubernetes
-- Installing or upgrading ArgoCD using the Helm chart with custom values (see `roles/chart/templates/argocd-values.yaml`)
+The root playbook loads defaults and includes the task dispatcher. The dispatcher
+reports progress and includes the installation tasks. Galaxy role metadata is in
+`meta/main.yml`. Customize Helm values in `templates/argocd-values.yaml`.
 
 ## Usage
 
-Add this collection to your Ansible playbook and use the provided roles to automate ArgoCD installation and management.
+Requires Ansible, the `kubernetes.core` collection, Helm, kubectl, Kubernetes Python
+dependencies, and access to a Kubernetes cluster.
 
-```sudo apt install python3-kubernetes```
+```bash
+ansible-playbook main.yaml
+```

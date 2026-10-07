@@ -1,0 +1,9 @@
+- name: Create Argo Rollouts namespace in Kubernetes
+  kubernetes.core.k8s:
+    api_version: v1
+    kind: Namespace
+    name: "{{ argo_rollouts_namespace }}"
+
+- name: Apply Argo Rollouts installation manifests using kubectl
+  ansible.builtin.shell: |
+    kubectl -n {{ argo_rollouts_namespace | quote }} apply -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
