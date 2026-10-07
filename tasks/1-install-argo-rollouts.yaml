@@ -6,4 +6,4 @@
 
 - name: Apply Argo Rollouts installation manifests using kubectl
   ansible.builtin.shell: |
-    kubectl -n {{ argo_rollouts_namespace | quote }} apply -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+    kubectl -n {{ argo_rollouts_namespace | quote }} apply --server-side -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
